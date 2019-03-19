@@ -29,7 +29,7 @@ $Email = substr(md5(microtime()),rand(0,26),8).'@'.substr(md5(microtime()),rand(
 /*
   Login
 */
-
+/*
 $Data = '{"email": "'.$Email.'"}';
 $curl = curl_init();
 curl_setopt_array($curl, [
@@ -54,23 +54,51 @@ exit;
 $Login = json_decode($Login,true);
 $Token = $Login['token'];
 
-
+*/
 //https://api.bird.co/bird/nearby?latitude=37.77184&longitude=-122.40910&radius=1000
 
+$Latitude  = '37.8038906';
+$Longitude = '-122.2644321';
+
 $curl = curl_init();
+/*
+    params: {
+        latitude: latitude,
+        longitude: longitude,
+        radius: radius
+    },
+    headers: {
+        Location: JSON.stringify({
+            latitude: latitude,
+            longitude: longitude,
+            altitude: 500,
+            accuracy: 100,
+            speed: -1,
+            heading: -1
+        })
+    },
+*/
 curl_setopt_array($curl, [
     CURLOPT_RETURNTRANSFER => 1,
     CURLOPT_URL => 'https://api.bird.co/bird/nearby?longitude='.$Longitude.'&latitude='.$Latitude.'&radius=1000',
-    CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+    CURLOPT_USERAGENT => ''
 ]);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-    'Location' => '{"latitude":'.$Latitude.',"longitude":'.$Longitude.',"altitude":500,"accuracy":100,"speed":-1,"heading":-1}',
-    'App-Version' => '3.0.5',
-    'Platform' => 'ios',
-    'Authorization' => 'Bird '.$Token,
-    'Device-id' => $GUID,
-    'Content-Type' => 'application/json',
-    'Content-Length' => strlen($Data))
+  'latitude' => $Lati		tude,
+  'longitude' => $Longitude,
+  'altitude' => '500',
+  'speed' => '-1',
+  'heading' => '-1'
+  
+  /*
+  'Location' => '{"latitude":'.$Latitude.',"longitude":'.$Longitude.',"altitude":500,"accuracy":100,"speed":-1,"heading":-1}',
+  'App-Version' => '3.0.5',
+  'Platform' => 'ios',
+  'Authorization' => 'Bird '.$Token,
+  'Device-id' => $GUID,
+  'Content-Type' => 'application/json',
+  'Content-Length' => strlen($Data))
+  */
 );
 $Birds = curl_exec($curl);
 curl_close($curl);
