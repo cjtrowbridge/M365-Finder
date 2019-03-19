@@ -35,7 +35,7 @@ $curl = curl_init();
 curl_setopt_array($curl, [
   CURLOPT_RETURNTRANSFER => 1,
   CURLOPT_URL => 'https://api.bird.co/user/login',
-  CURLOPT_USERAGENT => '',
+  CURLOPT_USERAGENT => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1',
   CURLOPT_POST => 1,
   CURLOPT_POSTFIELDS => $Data  
 ]);
