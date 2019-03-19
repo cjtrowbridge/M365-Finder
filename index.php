@@ -51,7 +51,7 @@ curl_close($curl);
 var_dump($Login);
 
 
-$Login = json_decode($LOgin,true);
+$Login = json_decode($Login,true);
 $Token = $Login['token'];
 
 
