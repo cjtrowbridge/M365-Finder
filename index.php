@@ -61,7 +61,7 @@ $Latitude  = '37.8038906';
 $Longitude = '-122.2644321';
 
 $curl = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); 
 /*
     params: {
         latitude: latitude,
@@ -106,4 +106,4 @@ $Birds = curl_exec($curl);
 curl_close($curl);   
 $Birds = json_decode($Birds,true);
 var_dump($Birds);
-var_dump(curl_error());
+var_dump(curl_error($curl));
