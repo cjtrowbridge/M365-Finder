@@ -29,15 +29,15 @@ $Email = substr(md5(microtime()),rand(0,26),8).'@'.substr(md5(microtime()),rand(
 /*
   Login
 */
-/*
+
 $Data = '{"email": "'.$Email.'"}';
 $curl = curl_init();
 curl_setopt_array($curl, [
   CURLOPT_RETURNTRANSFER => 1,
   CURLOPT_URL => 'https://api.bird.co/user/login',
-  CURLOPT_USERAGENT => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1',
+//  CURLOPT_USERAGENT => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1',
   CURLOPT_POST => 1,
-  CURLOPT_POSTFIELDS => array($Data)  
+  CURLOPT_POSTFIELDS => array($Data)
 ]);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
     'Platform' => 'ios',
@@ -54,7 +54,7 @@ exit;
 $Login = json_decode($Login,true);
 $Token = $Login['token'];
 
-*/
+
 //https://api.bird.co/bird/nearby?latitude=37.77184&longitude=-122.40910&radius=1000
 
 $Latitude  = '37.8038906';
@@ -62,23 +62,6 @@ $Longitude = '-122.2644321';
 
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); 
-/*
-    params: {
-        latitude: latitude,
-        longitude: longitude,
-        radius: radius
-    },
-    headers: {
-        Location: JSON.stringify({
-            latitude: latitude,
-            longitude: longitude,
-            altitude: 500,
-            accuracy: 100,
-            speed: -1,
-            heading: -1
-        })
-    },
-*/
 curl_setopt_array($curl, [
     CURLOPT_RETURNTRANSFER => 1,
     CURLOPT_URL => 'https://api.bird.co/bird/nearby?longitude='.$Longitude.'&latitude='.$Latitude.'&radius=1000',
@@ -106,4 +89,3 @@ $Birds = curl_exec($curl);
 curl_close($curl);   
 $Birds = json_decode($Birds,true);
 var_dump($Birds);
-var_dump(curl_error($curl));
