@@ -100,6 +100,7 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
   'Content-Length' => strlen($Data))
   */
 ));
+curl_setopt($curl, CURLOPT_VERBOSE, true);
 $Birds = curl_exec($curl);
 curl_close($curl);   
 $Birds = json_decode($Birds,true);
