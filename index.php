@@ -61,6 +61,7 @@ $Latitude  = '37.8038906';
 $Longitude = '-122.2644321';
 
 $curl = curl_init();
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 /*
     params: {
         latitude: latitude,
