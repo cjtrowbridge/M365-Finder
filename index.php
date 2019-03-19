@@ -106,3 +106,4 @@ $Birds = curl_exec($curl);
 curl_close($curl);   
 $Birds = json_decode($Birds,true);
 var_dump($Birds);
+var_dump(curl_error());
