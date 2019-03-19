@@ -21,10 +21,10 @@ curl_setopt_array($curl, [
   CURLOPT_POSTFIELDS => $Data  
 ]);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-    'Platform: ios',
-    'Device-id: '.$GUID.',
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen($Data))
+    'Platform' => 'ios',
+    'Device-id' => $GUID,
+    'Content-Type' => 'application/json',
+    'Content-Length' => strlen($Data))
 );
 $Login = curl_exec($curl);
 curl_close($curl);
@@ -45,13 +45,13 @@ curl_setopt_array($curl, [
     CURLOPT_USERAGENT => 'Codular Sample cURL Request'
 ]);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-    'Location: {"latitude":'.$Latitude.',"longitude":'.$Longitude.',"altitude":500,"accuracy":100,"speed":-1,"heading":-1}',
-    'App-Version: 3.0.5',
-    'Platform: ios',
-    'Authorization: Bird '.$Token.',
-    'Device-id: '.$GUID.',
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen($Data))
+    'Location' => '{"latitude":'.$Latitude.',"longitude":'.$Longitude.',"altitude":500,"accuracy":100,"speed":-1,"heading":-1}',
+    'App-Version' => '3.0.5',
+    'Platform' => 'ios',
+    'Authorization' => 'Bird '.$Token,
+    'Device-id' => $GUID,
+    'Content-Type' => 'application/json',
+    'Content-Length' => strlen($Data))
 );
 $Birds = curl_exec($curl);
 curl_close($curl);
