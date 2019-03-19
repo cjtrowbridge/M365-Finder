@@ -84,7 +84,7 @@ curl_setopt_array($curl, [
     CURLOPT_USERAGENT => ''
 ]);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-  'latitude' => $Lati		tude,
+  'latitude' => $Latitude,
   'longitude' => $Longitude,
   'altitude' => '500',
   'speed' => '-1',
@@ -101,5 +101,6 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
   */
 );
 $Birds = curl_exec($curl);
-curl_close($curl);
+curl_close($curl);   
+$Birds = json_decode($Birds,true);
 var_dump($Birds);
