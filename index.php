@@ -37,7 +37,7 @@ curl_setopt_array($curl, [
   CURLOPT_URL => 'https://api.bird.co/user/login',
   CURLOPT_USERAGENT => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1',
   CURLOPT_POST => 1,
-  CURLOPT_POSTFIELDS => $Data  
+  CURLOPT_POSTFIELDS => array($Data)  
 ]);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
     'Platform' => 'ios',
@@ -49,7 +49,7 @@ $Login = curl_exec($curl);
 curl_close($curl);
 
 var_dump($Login);
-
+exit;
 
 $Login = json_decode($Login,true);
 $Token = $Login['token'];
