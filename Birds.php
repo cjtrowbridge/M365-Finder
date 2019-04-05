@@ -100,8 +100,6 @@ class Birds{
     Get all nearby scooters
   */
   function getNearbyScooters(){
-    var_dump($this);
-    $Location = "{\"latitude\":".($this->Latitude).",\"longitude\":".($this->Longitude).",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}";
     die($Location);
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -118,7 +116,7 @@ class Birds{
         "cache-control: no-cache",
         "content-type: application/json",
         "device-id: ".($this->DeviceID()),
-        "location: ".$Location,
+        "location: {\"latitude\":".($this->Latitude).",\"longitude\":".($this->Longitude).",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
       ),
     ));
     $response = curl_exec($curl);
