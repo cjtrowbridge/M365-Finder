@@ -8,10 +8,9 @@ class Birds{
   private $Latitude  = false;
   private $Longitude = false;
   
-  function __construct($Latitude, $Longitude){
-    $this->Latitude = $Latitude;
-    var_dump($this->Latitude);
-    $this->Longitude = $Longitude;
+  function __construct($Lat, $Lon){
+    $this->Latitude = $Lat;
+    $this->Longitude = $Lon;
   }
   
   /*
