@@ -100,10 +100,10 @@ class Birds{
       CURLOPT_CUSTOMREQUEST => "GET",
       CURLOPT_HTTPHEADER => array(
         "app-version: 3.0.5",
-        "authorization: Bird ".$this->Token(),
+        "authorization: Bird ".($this->Token()),
         "cache-control: no-cache",
         "content-type: application/json",
-        "device-id: ".$this->DeviceID
+        "device-id: ".($this->DeviceID()),
         "location: {\"latitude\":".$Latitude.",\"longitude\":".$Longitude.",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
       ),
     ));
@@ -132,10 +132,10 @@ class Birds{
       CURLOPT_POSTFIELDS => "{\"alarm\": false,\"bird_id\": \"".$ScooterID."\"}",
       CURLOPT_HTTPHEADER => array(
         "app-version: 3.0.5",
-        "authorization: Bird ".$this->Token(),
+        "authorization: Bird ".($this->Token()),
         "cache-control: no-cache",
         "content-type: application/json",
-        "device-id: ".$this->DeviceID
+        "device-id: ".($this->DeviceID)
       ),
     ));
 
