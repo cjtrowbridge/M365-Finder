@@ -2,11 +2,11 @@
 
 class Birds{
 
-  private $Email    = false;
-  private $Token    = false;
-  private $DeviceID = false;
-  private $Latitude;
-  private $Longitude;
+  private $Email     = false;
+  private $Token     = false;
+  private $DeviceID  = false;
+  private $Latitude  = false;
+  private $Longitude = false;
   
   function __construct($Latitude, $Longitude){
     $this->Latitude = $Latitude;
