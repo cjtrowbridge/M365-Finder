@@ -13,7 +13,7 @@ class Birds{
        (preg_match('/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/', $Lat))&&
        (preg_match('/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/', $Lon))
     )){
-      die('Invalid Coordinates');
+      die('Invalid Coordinates: '.$Lat.','.$Lon);
     }
     
     $this->Latitude = $Lat;
