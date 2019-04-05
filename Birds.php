@@ -15,7 +15,7 @@ class Birds{
   */
   function Token(){
     if($this->Token==false){
-      $this->Token = getAuthToken();
+      $this->Token = $this->getAuthToken();
     }
     return $this->Token;
   }
