@@ -6,8 +6,10 @@ class Birds{
   private $Token    = false;
   private $DeviceID = false;
   
-  function __construct(){
-    
+  function __construct($AuthToken = false){
+    if($AuthToken != false){
+      $this->Token = $AuthToken;
+    }
   }
   
   /*
