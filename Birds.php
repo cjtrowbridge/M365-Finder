@@ -100,7 +100,6 @@ class Birds{
     Get all nearby scooters
   */
   function getNearbyScooters(){
-    die($Location);
     $curl = curl_init();
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.bird.co/bird/nearby?radius=1000",
