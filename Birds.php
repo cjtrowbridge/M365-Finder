@@ -9,10 +9,10 @@ class Birds{
   private $Longitude = false;
   
   function __construct($Lat, $Lon){
-    if(!
+    if(!(
        (preg_match('/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/', $Lat))&&
        (preg_match('/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/', $Lon))
-    ){
+    )){
       die('Invalid Coordinates');
     }
     
