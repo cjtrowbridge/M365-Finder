@@ -1,7 +1,7 @@
 <?php 
 
 if(
-  isset($_GET['latitude']))&&
+  isset($_GET['latitude']) &&
   isset($_GET['longitude'])
 ){
   $Latitude = $_GET['Latitude'];
