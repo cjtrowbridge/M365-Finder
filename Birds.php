@@ -9,6 +9,7 @@ class Birds{
   private $Longitude = false;
   
   function __construct($Lat, $Lon){
+    echo $Lat.','.$long;
     $this->Latitude = $Lat;
     $this->Longitude = $Lon;
   }
