@@ -86,6 +86,37 @@ class Birds{
   }
 
   /*
+    Get all nearby scooters
+  */
+  function getNearbyScooters($Latitude = '37.7582503', $Longitude = '-122.5541942'){
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.bird.co/bird/nearby?radius=1000",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "GET",
+      CURLOPT_HTTPHEADER => array(
+        "app-version: 3.0.5",
+        "authorization: Bird ".$this->Token(),
+        "cache-control: no-cache",
+        "content-type: application/json",
+        "device-id: ".$this->DeviceID
+        "location: {\"latitude\":".$Latitude.",\"longitude\":".$Longitude.",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
+      ),
+    ));
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+    if ($err) {
+      echo "cURL Error #:" . $err;
+    }
+    return $response;
+  }
+  
+  /*
     Get details about a specific scooter by its id code
   */
   function getScooterDetail($ScooterID){
@@ -114,5 +145,6 @@ class Birds{
     if ($err) {
       die("cURL Error while fetching device details #:" . $err);
     }
+    return $response;
   }
 }
