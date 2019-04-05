@@ -82,6 +82,7 @@ class Birds{
     if ($err) {
       die("cURL Error while getting auth token #:" . $err);
     }
+    $response = json_decode($response,true);
     return $response;
   }
 
@@ -113,6 +114,7 @@ class Birds{
     if ($err) {
       echo "cURL Error #:" . $err;
     }
+    $response = json_decode($response,true);
     return $response;
   }
   
@@ -145,6 +147,7 @@ class Birds{
     if ($err) {
       die("cURL Error while fetching device details #:" . $err);
     }
+    $response = json_decode($response,true);
     return $response;
   }
 }
