@@ -5,11 +5,12 @@ class Birds{
   private $Email    = false;
   private $Token    = false;
   private $DeviceID = false;
+  private $Latitude;
+  private $Longitude;
   
-  function __construct($AuthToken = false){
-    if($AuthToken != false){
-      $this->Token = $AuthToken;
-    }
+  function __construct($Latitude, $Longitude){
+    $this->Latitude = $Latitude;
+    $this->Longitude = $Longitude;
   }
   
   /*
@@ -91,7 +92,7 @@ class Birds{
   /*
     Get all nearby scooters
   */
-  function getNearbyScooters($Latitude = '37.7582503', $Longitude = '-122.5541942'){
+  function getNearbyScooters(){
     $curl = curl_init();
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.bird.co/bird/nearby?radius=1000",
@@ -107,7 +108,7 @@ class Birds{
         "cache-control: no-cache",
         "content-type: application/json",
         "device-id: ".($this->DeviceID()),
-        "location: {\"latitude\":".$Latitude.",\"longitude\":".$Longitude.",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
+        "location: {\"latitude\":".($this->Latitude).",\"longitude\":".($this->Longitude).",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
       ),
     ));
     $response = curl_exec($curl);
