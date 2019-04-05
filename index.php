@@ -22,11 +22,11 @@ function getGUID(){
         return $uuid;
     }
 }
-$GUID  = getGUID();
-$Email = substr(md5(microtime()),rand(0,26),8).'@'.substr(md5(microtime()),rand(0,26),8).'.com';
-
 
 function getAuthToken(){
+  //Generate a random email since there is no verification in the api
+  $Email = substr(md5(microtime()),rand(0,26),8).'@'.substr(md5(microtime()),rand(0,26),8).'.com';
+  
   $curl = curl_init();
   curl_setopt_array($curl, array(
     CURLOPT_URL => "https://api.bird.co/user/login",
@@ -58,7 +58,8 @@ function getAuthToken(){
   return $response;
 }
   
-  
+var_dump(getAuthToken());
+exit;
   
 
 //https://api.bird.co/bird/nearby?latitude=37.77184&longitude=-122.40910&radius=1000
