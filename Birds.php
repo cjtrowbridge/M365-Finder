@@ -93,6 +93,7 @@ class Birds{
     Get all nearby scooters
   */
   function getNearbyScooters(){
+    var_dump($this->Latitude);
     $Location = "{\"latitude\":".($this->Latitude).",\"longitude\":".($this->Longitude).",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}";
     die($Location);
     $curl = curl_init();
