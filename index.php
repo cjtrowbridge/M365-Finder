@@ -20,7 +20,9 @@ $Scooters = $Bird->getNearbyScooters();
 
 foreach($Scooters['birds'] as $Scooter){
   if(!(is_dir('data'))){
-    mkdir('data');
+    if(mkdir('data')===false){
+      die('Failed to create data directory. Check permissions.');
+    }
   }
   if(!(is_dir('data/'.$Scooter['id']))){
     mkdir('data/'.$Scooter['id']);
