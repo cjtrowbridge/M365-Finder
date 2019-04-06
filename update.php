@@ -1,7 +1,6 @@
 <?php 
 date_default_timezone_set('America/Los_Angeles');
 
-
 if(
   isset($_GET['latitude']) &&
   isset($_GET['longitude'])
@@ -104,8 +103,8 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   }else{
     echo 'Updated '.$BirdsFound.' birds. ('.$NewBirds.' new.)';
   }
-  echo '<!--'.PHP_EOL;
+  echo '<!--'.$Latitude.','.$Longitude.PHP_EOL;
   var_dump($Scooters);
-  echo PHP_EOL.'-->';
+  echo '-->';
   
 }
