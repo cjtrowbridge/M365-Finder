@@ -19,15 +19,18 @@ $Bird = new Birds($Latitude, $Longitude);
 $Scooters = $Bird->getNearbyScooters();
 
 foreach($Scooters['birds'] as $Scooter){
-  if(!(is_dir($Scooter['id']))){
-    mkdir($Scooter['id']);
+  if(!(is_dir('data'))){
+    mkdir('data');
   }
-  if(!(is_dir($Scooter['id'].'/'.date('Y-m-d')))){
-    mkdir($Scooter['id'].'/'.date('Y-m-d'));
+  if(!(is_dir('data/'.$Scooter['id']))){
+    mkdir('data/'.$Scooter['id']);
+  }
+  if(!(is_dir('data/'.$Scooter['id'].'/'.date('Y-m-d')))){
+    mkdir('data/'.$Scooter['id'].'/'.date('Y-m-d'));
   }
   
-  $Path = $Scooter['id'].'/'.date('Y-m-d').'/'.date('H:i:s').'.php';
-  $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ '.$Scooter["id"].' ][ '.date("Y-m-d").' ][ '.date("H:i:s").' ] = '.var_export($Scooter,true);
+  $Path = 'data/'.$Scooter['id'].'/'.date('Y-m-d').'/'.date('H:i:s').'.php';
+  $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "'.date("Y-m-d").'" ][ "'.date("H:i:s").'" ] = '.PHP_EOL.var_export($Scooter,true);
   file_put_contents($Path,$Data);
   
   echo '<p>exported: <a href="'.$Path.'" target="_blank">'.$Path.'</a></p>';
