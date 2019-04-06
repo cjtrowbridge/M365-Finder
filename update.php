@@ -34,7 +34,7 @@ if(
       break;
     case 'Soma':
     default:
-      UpdateLocation('37.7782488','-122.405501', $_GET['location']);
+      UpdateLocation('37.7782488','-122.405501', 'Soma');
       break;
   }
 }else{
