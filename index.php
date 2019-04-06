@@ -47,7 +47,7 @@ $Scooter = $Scooters['birds'][0];
 if(!(is_dir('data/'.$Scooter['id'].'/detail'))){
   mkdir('data/'.$Scooter['id'].'/detail');
 }
-$DetailPath = 'data/'.$Scooter['id'].'detail/last.php';
+$DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
 $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export(($Bird->getScooterDetail($Scooter['id'])),true).';';
 file_put_contents($Path,$Data);
 echo '<p>Fetched Detail for <a href="'.$DetailPath.'" target="_blank">'.$Scooter["id"].'</a></p>';
