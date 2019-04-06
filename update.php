@@ -1,53 +1,51 @@
 <?php 
 date_default_timezone_set('America/Los_Angeles');
 
-/*
+
 if(
   isset($_GET['latitude']) &&
   isset($_GET['longitude'])
 ){
   $Latitude = $_GET['latitude'];
   $Longitude = $_GET['longitude'];
+}elseif(issset($_GET['location'])){
+  switch($_GET['location']){
+    case 'Soma':
+      UpdateLocation('37.7782488','-122.405501', $_GET['location']);
+      break;
+    case 'Castro':
+      UpdateLocation('7.7608221','-122.4350248', $_GET['location']);
+      break;
+    case 'Mission':
+      UpdateLocation('37.7596636','-122.4149094', $_GET['location']);
+      break;
+    case 'Berkeley':
+      UpdateLocation('37.8714545','-122.2602743', $_GET['location']);
+      break;
+    case 'Fremont':
+      UpdateLocation('37.5444461','-121.9881122', $_GET['location']);
+      break;
+    case 'Lake Merritt':
+      UpdateLocation('37.8004072','-122.2575443', $_GET['location']);
+      break;
+    case 'Mountain View':
+      UpdateLocation('37.3862282','-122.084398', $_GET['location']);
+      break;
+    case 'Palo Alto':
+      UpdateLocation('37.4417158','-122.1431246', $_GET['location']);
+      break;
+    case 'San Jose':
+      UpdateLocation('37.3380498','-121.8864084', $_GET['location']);
+      break;
+    default:
+      die('Invalid Selection');
+  }
 }else{
   $Latitude = '37.7582503';
   $Longitude = '-122.5541942';
 }
-*/
 
-
-switch($_GET['location']){
-  case 'Soma':
-    UpdateLocation($_GET['location'], '37.7782488','-122.405501');
-    break;
-  case 'Castro':
-    UpdateLocation($_GET['location'], '7.7608221','-122.4350248');
-    break;
-  case 'Mission':
-    UpdateLocation($_GET['location'], '37.7596636','-122.4149094');
-    break;
-  case 'Berkeley':
-    UpdateLocation($_GET['location'], '37.8714545','-122.2602743');
-    break;
-  case 'Fremont':
-    UpdateLocation($_GET['location'], '37.5444461','-121.9881122');
-    break;
-  case 'Lake Merritt':
-    UpdateLocation($_GET['location'], '37.8004072','-122.2575443');
-    break;
-  case 'Mountain View':
-    UpdateLocation($_GET['location'], '37.3862282','-122.084398');
-    break;
-  case 'Palo Alto':
-    UpdateLocation($_GET['location'], '37.4417158','-122.1431246');
-    break;
-  case 'San Jose':
-    UpdateLocation($_GET['location'], '37.3380498','-121.8864084');
-    break;
-  default:
-    die('Invalid Selection');
-}
-
-function UpdateLocation($LocationName, $Latitude, $Longitude){
+function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   $LastSeenBirds = array();
   include('Birds.php');
   $Bird = new Birds($Latitude, $Longitude);
@@ -93,12 +91,14 @@ function UpdateLocation($LocationName, $Latitude, $Longitude){
     }
   }
   
-  //Update the list of birds seen when this location was last updated
-  $FriendlyLocation = str_replace(' ','_',$LocationName);
-  $LocationPath = 'location/'.$FriendlyLocation.'.php';
-  $Data = '<?php $LastSeenBirds= '.PHP_EOL.var_export($LastSeenBirds,true).';';
-  file_put_contents($LocationPath,$Data);
-
+  if($LocationName){
+    //Update the list of birds seen when this location was last updated
+    $FriendlyLocation = str_replace(' ','_',$LocationName);
+    $LocationPath = 'location/'.$FriendlyLocation.'.php';
+    $Data = '<?php $LastSeenBirds= '.PHP_EOL.var_export($LastSeenBirds,true).';';
+    file_put_contents($LocationPath,$Data);
+  }
+  
   //Output some text about what was found
   $BirdsFound = count($Scooters['birds']);
   if($BirdsFound==0){
