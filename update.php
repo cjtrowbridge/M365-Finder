@@ -6,7 +6,7 @@ if(
   isset($_GET['longitude'])
 ){
   UpdateLocation($_GET['latitude'],$_GET['longitude']);
-}elseif(issset($_GET['location'])){
+}elseif(isset($_GET['location'])){
   switch($_GET['location']){
     case 'Castro':
       UpdateLocation('7.7608221','-122.4350248', $_GET['location']);
