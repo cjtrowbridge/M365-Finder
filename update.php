@@ -6,8 +6,7 @@ if(
   isset($_GET['latitude']) &&
   isset($_GET['longitude'])
 ){
-  $Latitude = $_GET['latitude'];
-  $Longitude = $_GET['longitude'];
+  UpdateLocation($_GET['latitude'],$_GET['longitude']);
 }elseif(issset($_GET['location'])){
   switch($_GET['location']){
     case 'Soma':
@@ -41,8 +40,7 @@ if(
       die('Invalid Selection');
   }
 }else{
-  $Latitude = '37.7582503';
-  $Longitude = '-122.5541942';
+  die('Specify a location.');
 }
 
 function UpdateLocation($Latitude, $Longitude, $LocationName=false){
