@@ -49,7 +49,7 @@ if(!(is_dir('data/'.$Scooter['id'].'/detail'))){
 }
 $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
 $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export(($Bird->getScooterDetail($Scooter['id'])),true).';';
-file_put_contents($Path,$Data);
+file_put_contents($DetailPath,$Data);
 echo '<p>Fetched Detail for <a href="'.$DetailPath.'" target="_blank">'.$Scooter["id"].'</a></p>';
 
 $BirdsFound = count($Scooters['birds']);
