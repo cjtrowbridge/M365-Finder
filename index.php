@@ -37,7 +37,6 @@ foreach($Scooters['birds'] as $Scooter){
   $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "'.date("Y-m-d").'" ][ "'.date("H:i:s").'" ] = '.PHP_EOL.var_export($Scooter,true).';';
   file_put_contents($Path,$Data);
   
-  echo '<p>exported: <a href="'.$Path.'" target="_blank">'.$Path.'</a></p>';
   
   //$Path = $Scooter['id'].'/details.php';
   
