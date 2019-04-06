@@ -38,7 +38,7 @@ if(
       break;
   }
 }else{
-  die('Specify a location.');
+  UpdateLocation('37.7782488','-122.405501', 'Soma');
 }
 
 function UpdateLocation($Latitude, $Longitude, $LocationName=false){
