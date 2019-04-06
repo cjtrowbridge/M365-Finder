@@ -8,9 +8,6 @@ if(
   UpdateLocation($_GET['latitude'],$_GET['longitude']);
 }elseif(issset($_GET['location'])){
   switch($_GET['location']){
-    case 'Soma':
-      UpdateLocation('37.7782488','-122.405501', $_GET['location']);
-      break;
     case 'Castro':
       UpdateLocation('7.7608221','-122.4350248', $_GET['location']);
       break;
@@ -35,8 +32,10 @@ if(
     case 'San Jose':
       UpdateLocation('37.3380498','-121.8864084', $_GET['location']);
       break;
+    case 'Soma':
     default:
-      die('Invalid Selection');
+      UpdateLocation('37.7782488','-122.405501', $_GET['location']);
+      break;
   }
 }else{
   die('Specify a location.');
