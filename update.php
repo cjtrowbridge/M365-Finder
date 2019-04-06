@@ -72,7 +72,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
     }
     $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
     $Detail = $Bird->getScooterDetail($Scooter['id']);
-    $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';';
+    $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
     file_put_contents($DetailPath,$Data);
     
     $LastSeenBirds[$Scooter['id']]=array(
@@ -92,7 +92,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
     //Update the list of birds seen when this location was last updated
     $FriendlyLocation = str_replace(' ','_',$LocationName);
     $LocationPath = 'location/'.$FriendlyLocation.'.php';
-    $Data = '<?php $LastSeenBirds= '.PHP_EOL.var_export($LastSeenBirds,true).';';
+    $Data = '<?php $LastSeenBirds= '.PHP_EOL.var_export($LastSeenBirds,true).';'.PHP_EOL;
     file_put_contents($LocationPath,$Data);
   }
   
