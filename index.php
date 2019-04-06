@@ -39,9 +39,13 @@ foreach($Scooters['birds'] as $Scooter){
   //$Path = $Scooter['id'].'/details.php';
   
 }
-if(count($Scooters['birds'])==0){
+$BirdsFound = count($Scooters['birds']);
+if($BirdsFound==0){
   echo '<p>Something went wrong. No birds found.</p>';
+}else{
+  echo '<p>Found '.$BirdsFound.' birds.</p>';
 }
+
 echo '<!--'.PHP_EOL;
 var_dump($Scooters);
 echo PHP_EOL.'-->';
