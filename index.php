@@ -32,7 +32,7 @@ foreach($Scooters['birds'] as $Scooter){
   }
   
   $Path = 'data/'.$Scooter['id'].'/'.date('Y-m-d').'/'.date('H:i:s').'.php';
-  $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "'.date("Y-m-d").'" ][ "'.date("H:i:s").'" ] = '.PHP_EOL.var_export($Scooter,true);
+  $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "'.date("Y-m-d").'" ][ "'.date("H:i:s").'" ] = '.PHP_EOL.var_export($Scooter,true).';';
   file_put_contents($Path,$Data);
   
   echo '<p>exported: <a href="'.$Path.'" target="_blank">'.$Path.'</a></p>';
@@ -40,3 +40,5 @@ foreach($Scooters['birds'] as $Scooter){
   //$Path = $Scooter['id'].'/details.php';
   
 }
+
+var_dump();
