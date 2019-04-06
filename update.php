@@ -47,12 +47,12 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   $Bird = new Birds($Latitude, $Longitude);
   $Scooters = $Bird->getNearbyScooters();
   $NewBirds = 0;
-  foreach($Scooters['birds'] as $Scooter){
-    if(!(is_dir('data'))){
-      if(mkdir('data')===false){
-        die('Failed to create data directory. Check permissions.');
-      }
+  if(!(is_dir('data'))){
+    if(mkdir('data')===false){
+      die('Failed to create data directory. Check permissions.');
     }
+  }
+  foreach($Scooters['birds'] as $Scooter){
     if(!(is_dir('data/'.$Scooter['id']))){
       mkdir('data/'.$Scooter['id']);
       $NewBirds++;
