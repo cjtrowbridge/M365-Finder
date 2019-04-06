@@ -38,19 +38,20 @@ foreach($Scooters['birds'] as $Scooter){
   file_put_contents($Path,$Data);
   
   
-  
+  $Scooter = $Scooters['birds'][0];
+  if(!(is_dir('data/'.$Scooter['id'].'/detail'))){
+    mkdir('data/'.$Scooter['id'].'/detail');
+  }
+  $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
+  $Detail = $Bird->getScooterDetail($Scooter['id']);
+  $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';';
+  file_put_contents($DetailPath,$Data);
+  echo '<p>Fetched '.count($Detail).' details for <a href="'.$DetailPath.'" target="_blank">'.$Scooter["id"].'</a></p>';
   
 }
 
 //I dont want to do this to all of them until I know it works. For now, let's just do the first one.
-$Scooter = $Scooters['birds'][0];
-if(!(is_dir('data/'.$Scooter['id'].'/detail'))){
-  mkdir('data/'.$Scooter['id'].'/detail');
-}
-$DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
-$Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export(($Bird->getScooterDetail($Scooter['id'])),true).';';
-file_put_contents($DetailPath,$Data);
-echo '<p>Fetched Detail for <a href="'.$DetailPath.'" target="_blank">'.$Scooter["id"].'</a></p>';
+
 
 $BirdsFound = count($Scooters['birds']);
 if($BirdsFound==0){
