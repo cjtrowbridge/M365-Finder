@@ -21,7 +21,7 @@ if(
       UpdateLocation('37.5444461','-121.9881122', $_GET['location']);
       break;
     case 'Lake Merritt':
-      UpdateLocation('37.8004072','-122.2575443', $_GET['location']);
+      UpdateLocation('37.8098737','-122.2618778', $_GET['location']);
       break;
     case 'Mountain View':
       UpdateLocation('37.3862282','-122.084398', $_GET['location']);
