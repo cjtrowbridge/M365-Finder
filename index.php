@@ -15,7 +15,6 @@ if(
 
 include('Birds.php');
 $Bird = new Birds($Latitude, $Longitude);
-
 $Scooters = $Bird->getNearbyScooters();
 
 foreach($Scooters['birds'] as $Scooter){
@@ -41,4 +40,6 @@ foreach($Scooters['birds'] as $Scooter){
   
 }
 
-var_dump();
+echo '<!--'.PHP_EOL;
+var_dump($Scooters);
+echo PHP_EOL.'-->';
