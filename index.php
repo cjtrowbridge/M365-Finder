@@ -1,5 +1,7 @@
 <?php 
 
+date_default_timezone_set('America/Los_Angeles');
+
 if(
   isset($_GET['latitude']) &&
   isset($_GET['longitude'])
@@ -17,3 +19,21 @@ $Bird = new Birds($Latitude, $Longitude);
 $Scooters = $Bird->getNearbyScooters();
 
 var_dump($Scooters);
+
+foreach($Scooters['birds'] as $Scooter){
+  if(!(is_dir($Scooter['id']))){
+    mkdir($Scooter['id']);
+  }
+  if(!(is_dir($Scooter['id'].'/'.date('Y-m-d')))){
+    mkdir($Scooter['id'].'/'.date('Y-m-d'));
+  }
+  
+  $Path = $Scooter['id'].'/'.date('Y-m-d').'/'.date('H:i:s').'.php';
+  $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ '.$Scooter["id"].' ][ '.date("Y-m-d").' ][ '.date("H:i:s").' ] = '.var_export($Scooter,true);
+  file_put_contents($Path,$Data);
+  
+  echo '<p>exported: <a href="'.$Path.'" target="_blank">'.$Path.'</a></p>';
+  
+  //$Path = $Scooter['id'].'/details.php';
+  
+}
