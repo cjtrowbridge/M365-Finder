@@ -87,9 +87,15 @@ function UpdateLocation($LocationName, $Latitude, $Longitude){
     );
   }
   
+  if(!(is_dir('location'))){
+    if(mkdir('location')===false){
+      die('Failed to create location directory. Check permissions.');
+    }
+  }
+  
   //Update the list of birds seen when this location was last updated
   $FriendlyLocation = str_replace(' ','_',$LocationName);
-  $LocationPath = 'location/'.$FriendlyLocation.'/detail/last.php';
+  $LocationPath = 'location/'.$FriendlyLocation.'.php';
   $Data = '<?php $LastSeenBirds= '.PHP_EOL.var_export($LastSeenBirds,true).';';
   file_put_contents($LocationPath,$Data);
 
