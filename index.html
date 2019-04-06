@@ -36,17 +36,17 @@
               Location
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Castro</a>
-              <a class="dropdown-item" href="#">Soma</a>
-              <a class="dropdown-item" href="#">Mission</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Castro');">Castro</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Soma');">Soma</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Mission');">Mission</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Berkeley</a>
-              <a class="dropdown-item" href="#">Fremont</a>
-              <a class="dropdown-item" href="#">Lake Merritt</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Berkeley');">Berkeley</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Fremont');">Fremont</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Lake Merritt');">Lake Merritt</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Mountain View</a>
-              <a class="dropdown-item" href="#">Palo Alto</a>
-              <a class="dropdown-item" href="#">San Jose</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Mountain View');">Mountain View</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('Palo Alto');">Palo Alto</a>
+              <a class="dropdown-item" href="#" onclick="ChangeLocation('San Jose');">San Jose</a>
             </div>
           </li>
         </ul>
@@ -67,5 +67,24 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+      function ChangeLocation(location){
+        switch(expression) {
+          case 'Soma':
+          case 'Castro':
+          case 'Mission':
+          case 'Berkeley':
+          case 'Fremont':
+          case 'Lake Merritt':
+          case 'Mountain View':
+          case 'Palo Alto':
+          case 'San Jose':
+            
+            break;
+          default:
+            alert('Sorry, that location has not been implemented yet.');
+        }
+      }
+    </script>
   </body>
 </html>
