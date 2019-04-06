@@ -18,8 +18,6 @@ $Bird = new Birds($Latitude, $Longitude);
 
 $Scooters = $Bird->getNearbyScooters();
 
-var_dump($Scooters);
-
 foreach($Scooters['birds'] as $Scooter){
   if(!(is_dir($Scooter['id']))){
     mkdir($Scooter['id']);
