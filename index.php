@@ -17,6 +17,8 @@ include('Birds.php');
 $Bird = new Birds($Latitude, $Longitude);
 $Scooters = $Bird->getNearbyScooters();
 
+$NewBirds = 0;
+
 foreach($Scooters['birds'] as $Scooter){
   if(!(is_dir('data'))){
     if(mkdir('data')===false){
@@ -25,6 +27,7 @@ foreach($Scooters['birds'] as $Scooter){
   }
   if(!(is_dir('data/'.$Scooter['id']))){
     mkdir('data/'.$Scooter['id']);
+    $NewBirds++;
   }
   if(!(is_dir('data/'.$Scooter['id'].'/'.date('Y-m-d')))){
     mkdir('data/'.$Scooter['id'].'/'.date('Y-m-d'));
@@ -43,7 +46,7 @@ $BirdsFound = count($Scooters['birds']);
 if($BirdsFound==0){
   echo '<p>Something went wrong. No birds found.</p>';
 }else{
-  echo '<p>Found '.$BirdsFound.' birds.</p>';
+  echo '<p>Found '.$BirdsFound.' birds. ('.$NewBirds.' new.)</p>';
 }
 
 echo '<!--'.PHP_EOL;
