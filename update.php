@@ -103,7 +103,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   }else{
     echo 'Updated '.$BirdsFound.' birds. ('.$NewBirds.' new.)';
   }
-  echo PHP_EOL.'<!--'.$Latitude.','.$Longitude.'(Location: '.$LocationName.')'.PHP_EOL;
+  echo PHP_EOL.'<!--'.$Latitude.','.$Longitude.' (LocationName: '.$LocationName.')'.PHP_EOL;
   var_dump($Scooters);
   echo '-->';
   
