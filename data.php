@@ -30,7 +30,7 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 	asort($directories);
 	arsort($files);
 	foreach($directories as $name => $directory){
-		echo '<li><a href="'.$name.'"><img src="/icons/folder.gif" alt="[DIR]"> '.$name.'</a>';
+		echo '<li><a href="'.$Root.DIRECTORY_SEPARATOR.$CurrentPath.'/'.$name.'"><img src="/icons/folder.gif" alt="[DIR]"> '.$name.'</a>';
 		
 		$Skip = false;
 		foreach($DirectoriesNotToExpandByDefault as $Ignore){
@@ -45,7 +45,7 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 		echo '</li>';
 	}
 	foreach($files as $name => $file){
-		echo '<li><a href="'.$CurrentPath.DIRECTORY_SEPARATOR.$name.'"><img src="/icons/unknown.gif" alt="[DIR]"> '.$name.'</a></li>';
+		echo '<li><a href="'.$Root.DIRECTORY_SEPARATOR.$CurrentPath.DIRECTORY_SEPARATOR.$name.'"><img src="/icons/unknown.gif" alt="[DIR]"> '.$name.'</a></li>';
 	}
 	echo '</ul>';
 }
