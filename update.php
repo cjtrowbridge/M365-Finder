@@ -72,6 +72,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
     }
     $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
     
+    //We only want to fetch details if we know it is an m365 or if it might be an m365
     if(
       (count(glob('data/'.$Scooter['id'].'/detail/model.*'))==0) ||
       file_exists('data/'.$Scooter['id'].'/detail/model.m365')
@@ -85,12 +86,6 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
         file_put_contents($ModelPath,'');
       }
     }
-    
-    /*$LastSeenBirds[$Scooter['id']]=array(
-      'id'  => $Scooter['id'],
-      'lat' => 'lat',
-      'lon' => 'lon'
-    );*/
     
   }
   
