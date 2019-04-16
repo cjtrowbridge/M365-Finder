@@ -83,7 +83,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       if(!(file_exists('data/'.$Scooter['id'].'/detail/model.m365'))){
         $Model = $Detail['model'];
         $ModelPath = 'data/'.$Scooter['id'].'/detail/model.'.$Model;
-        file_put_contents($ModelPath,'');
+        file_put_contents($ModelPath,var_export($Detail['location'],true));
       }
     }
     
