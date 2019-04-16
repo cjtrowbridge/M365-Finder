@@ -78,7 +78,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       file_exists('data/'.$Scooter['id'].'/detail/model.m365')
     ){
       $Detail = $Bird->getScooterDetail($Scooter['id']);
-      $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
+      $Data = '<?php global $Data; if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
       file_put_contents($DetailPath,$Data);
       if(!(file_exists('data/'.$Scooter['id'].'/detail/model.m365'))){
         $Model = $Detail['model'];
