@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<head>
-  <link rel="stylesheet" href="https://cjtrowbridge.com/projects/simple-tree/simple-tree.css">
-</head>
-<body>
 <?php
 
 function distance($lat1, $lon1, $lat2, $lon2, $unit) {
