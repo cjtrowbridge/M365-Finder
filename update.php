@@ -9,36 +9,36 @@ if(
 }elseif(isset($_GET['location'])){
   switch($_GET['location']){
     case 'Castro':
-      UpdateLocation('7.7608221','-122.4350248', $_GET['location']);
+      UpdateLocation('37.760822','-122.435024', $_GET['location']);
       break;
     case 'Mission':
-      UpdateLocation('37.7596636','-122.4149094', $_GET['location']);
+      UpdateLocation('37.759663','-122.414909', $_GET['location']);
       break;
     case 'Berkeley':
-      UpdateLocation('37.8714545','-122.2602743', $_GET['location']);
+      UpdateLocation('37.871454','-122.260274', $_GET['location']);
       break;
     case 'Fremont':
-      UpdateLocation('37.5444461','-121.9881122', $_GET['location']);
+      UpdateLocation('37.544446','-121.988112', $_GET['location']);
       break;
     case 'Lake Merritt':
-      UpdateLocation('37.8098737','-122.2618778', $_GET['location']);
+      UpdateLocation('37.809873','-122.261877', $_GET['location']);
       break;
     case 'Mountain View':
-      UpdateLocation('37.3862282','-122.084398', $_GET['location']);
+      UpdateLocation('37.386228','-122.08439', $_GET['location']);
       break;
     case 'Palo Alto':
-      UpdateLocation('37.4417158','-122.1431246', $_GET['location']);
+      UpdateLocation('37.441715','-122.143124', $_GET['location']);
       break;
     case 'San Jose':
-      UpdateLocation('37.3380498','-121.8864084', $_GET['location']);
+      UpdateLocation('37.338049','-121.886408', $_GET['location']);
       break;
     case 'Soma':
     default:
-      UpdateLocation('37.7782488','-122.405501', 'Soma');
+      UpdateLocation('37.778248','-122.405501', 'Soma');
       break;
   }
 }else{
-  UpdateLocation('37.7782488','-122.405501', 'Soma');
+  UpdateLocation('37.778248','-122.405501', 'Soma');
 }
 
 function UpdateLocation($Latitude, $Longitude, $LocationName=false){
