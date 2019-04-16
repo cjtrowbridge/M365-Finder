@@ -52,6 +52,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       die('Failed to create data directory. Check permissions.');
     }
   }
+  
   foreach($Scooters['birds'] as $Scooter){
     if(!(is_dir('data/'.$Scooter['id']))){
       mkdir('data/'.$Scooter['id']);
@@ -70,15 +71,27 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       mkdir('data/'.$Scooter['id'].'/detail');
     }
     $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
-    $Detail = $Bird->getScooterDetail($Scooter['id']);
-    $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
-    file_put_contents($DetailPath,$Data);
     
-    $LastSeenBirds[$Scooter['id']]=array(
+    if(
+      count(glob('data/'.$Scooter['id'].'/detail/model.*'))==0) ||
+      file_exists('data/'.$Scooter['id'].'/detail/model.m365')
+    ){
+      $Detail = $Bird->getScooterDetail($Scooter['id']);
+      $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
+      file_put_contents($DetailPath,$Data);
+      if(!(file_exists('data/'.$Scooter['id'].'/detail/model.m365'))){
+        $Model = $Detail['model'];
+        $ModelPath = 'data/'.$Scooter['id'].'/detail/model.'.$Model;
+        file_put_contents($ModelPath,'');
+      }
+    }
+    
+    /*$LastSeenBirds[$Scooter['id']]=array(
       'id'  => $Scooter['id'],
       'lat' => 'lat',
       'lon' => 'lon'
-    );
+    );*/
+    
   }
   
   if(!(is_dir('location'))){
@@ -102,8 +115,8 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   }else{
     echo 'Updated '.$BirdsFound.' birds. ('.$NewBirds.' new.)';
   }
-  echo PHP_EOL.'<!--'.$Latitude.','.$Longitude.' (LocationName: '.$LocationName.')'.PHP_EOL;
-  var_dump($Scooters);
-  echo '-->';
+  //echo PHP_EOL.'<!--'.$Latitude.','.$Longitude.' (LocationName: '.$LocationName.')'.PHP_EOL;
+  //var_dump($Scooters);
+  //echo '-->';
   
 }
