@@ -8,7 +8,7 @@
 function ShowM365s(){
 	if($handle = opendir('data')){
 		while(false !== ($entry = readdir($handle))){
-			if(is_dir($Root.DIRECTORY_SEPARATOR.$CurrentPath.DIRECTORY_SEPARATOR.$entry)){
+			if(is_dir('data/'.$entry)){
 				if(($entry !== '.')&& ($entry!=='..')){
 					$directories[$entry]=$entry;
 				}
