@@ -17,8 +17,8 @@ function ShowM365s(){
 		closedir($handle);
 	}
 	foreach($directories as $name => $directory){
-		if(file_exists('data/'.$name.'/model.m365')){
-			echo '<p><a href="data/'.$name.'/model.m365" target="_blank">'.file_get_contents('data/'.$name.'/model.m365').'</a></p>';
+		if(file_exists('data/'.$name.'/detail/model.m365')){
+			echo '<p><a href="data/'.$name.'/detail/model.m365" target="_blank">'.file_get_contents('data/'.$name.'/detail/model.m365').'</a></p>';
 		}
 	}
 
