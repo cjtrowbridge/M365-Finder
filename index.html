@@ -96,11 +96,29 @@
         }
       }
       function ReloadData(){
-        $.get("data.php", function(data){
+        $.get("data.php?latitude="+window.latitude+"&longitude="+window.longitude, function(data){
           $("#fetchData").html(data);
         });
       }
-      ReloadData();
+      
+      window.latitude = '37.809873';
+      window.longitude = '-122.261877';
+      getLocation();
+      
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+
+      function showPosition(position) {
+        windows.latitude = position.coords.latitude;
+        window.longitude = position.coords.longitude; 
+        ReloadData();
+      }
+      
     </script>
   </body>
 </html>
