@@ -28,7 +28,7 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 		closedir($handle);
 	}
 	asort($directories);
-	asort($files);
+	rsort($files);
 	foreach($directories as $name => $directory){
 		echo '<li><a href="'.$name.'"><img src="/icons/folder.gif" alt="[DIR]"> '.$name.'</a>';
 		
@@ -50,4 +50,4 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 	echo '</ul>';
 }
 
-ShowDirectoryTree();
+ShowDirectoryTree('raw');
