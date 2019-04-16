@@ -120,7 +120,7 @@ class Birds{
         "cache-control: no-cache",
         "content-type: application/json",
         "device-id: ".($this->DeviceID()),
-        "location: {\"latitude\":".($this->Latitude).",\"longitude\":".($this->Longitude).",\"altitude\":500,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
+        "location: {\"latitude\":".($this->Latitude).",\"longitude\":".($this->Longitude).",\"altitude\":43,\"accuracy\":100,\"speed\":-1,\"heading\":-1}",
       ),
     ));
     $response = curl_exec($curl);
