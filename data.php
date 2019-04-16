@@ -45,7 +45,7 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 		echo '</li>';
 	}
 	foreach($files as $name => $file){
-		echo '<li><a href="'.$Root.DIRECTORY_SEPARATOR.$CurrentPath.DIRECTORY_SEPARATOR.$name.'"><img src="/icons/unknown.gif" alt="[DIR]"> '.$name.'</a></li>';
+		echo '<li><a href="'.$Root.DIRECTORY_SEPARATOR.$CurrentPath.DIRECTORY_SEPARATOR.$name.'" target="_blank"><img src="/icons/unknown.gif" alt="[DIR]"> '.$name.'</a></li>';
 	}
 	echo '</ul>';
 }
