@@ -68,6 +68,7 @@ function ShowM365s(){
 			$File = 'data/'.$name.'/detail/model.m365';
 			include($File);
 			$M365[$name]['time']=filemtime($File);
+			$M365[$name]['id']=$name;
 		}
 	}
 	$Sorted = array();
@@ -77,7 +78,7 @@ function ShowM365s(){
 	}
 	ksort($Sorted);
 	foreach($Sorted as $Distance => $Coordinates){
-		echo '<p><a href="https://www.google.com/maps/place/'.$Coordinates['latitude'].','.$Coordinates['longitude'].'" target="_blank">M365 Last Seen '.$Distance.' miles away, '.ago($Coordinates['time']).'.</a></p>';
+		echo '<p>M365 Last Seen <a href="https://www.google.com/maps/place/'.$Coordinates['latitude'].','.$Coordinates['longitude'].'" target="_blank">'.$Distance.' miles away</a>, <a href="data/'.$Coordinates['id'].'/detail/last.json" target="_blank">'.ago($Coordinates['time']).'.</a></p>';
 	}
 
 }
