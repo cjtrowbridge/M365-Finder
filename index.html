@@ -76,7 +76,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script>
       function ChangeLocation(location){
-        switch(expression) {
+        switch(location) {
           case 'Soma':
           case 'Castro':
           case 'Mission':
@@ -86,15 +86,20 @@
           case 'Mountain View':
           case 'Palo Alto':
           case 'San Jose':
-            
+            $.get("update.php?location="+location, function(data){
+              ReloadData();
+              alert(data);
+            });
             break;
           default:
             alert('Sorry, that location has not been implemented yet.');
         }
       }
-      $.get("data.php", function(data){
-        $( "#fetchData" ).html(data);
-      });
+      function ReloadData(){
+        $.get("data.php", function(data){
+          $("#fetchData").html(data);
+        });
+      }
     </script>
   </body>
 </html>
