@@ -63,6 +63,13 @@
       </div>
       <div class="card">
         <div class="card-body">
+          <p>Calculate Distances From: 
+            <form action="javascript:void(0);" onsubmit="return false;">
+              Latitude: <input type="text" id="latitude"><br>
+              Longitude: <input type="text" id="longitude">
+              <button>Update</button>
+            </form>
+          </p>
           <p class="card-text" id="fetchData">Loading Data...</p>
         </div>
       </div>
@@ -105,19 +112,12 @@
       window.longitude = '-122.261877';
       getLocation();
       
-      function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-      }
-
-      function showPosition(position) {
-        windows.latitude = position.coords.latitude;
-        window.longitude = position.coords.longitude; 
-        ReloadData();
-      }
+      $('#latitude').change(function(){
+        window.latitude = $('#latitude').val();
+      });
+      $('#longitude').change(function(){
+        window.longitude = $('#longitude').val();
+      });
       
     </script>
   </body>
