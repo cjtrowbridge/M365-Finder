@@ -24,6 +24,7 @@ function ShowM365s(){
 	
 	
 	echo '<ul>';
+	global $Data;
 	foreach($Data as $ID => $Detail){
 		var_dump($Detail);
 	}
