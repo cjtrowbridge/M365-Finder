@@ -73,7 +73,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
     $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
     
     if(
-      count(glob('data/'.$Scooter['id'].'/detail/model.*'))==0) ||
+      (count(glob('data/'.$Scooter['id'].'/detail/model.*'))==0) ||
       file_exists('data/'.$Scooter['id'].'/detail/model.m365')
     ){
       $Detail = $Bird->getScooterDetail($Scooter['id']);
