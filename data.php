@@ -51,3 +51,5 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 }
 
 ShowDirectoryTree('raw');
+ShowDirectoryTree('data');
+ShowDirectoryTree('location');
