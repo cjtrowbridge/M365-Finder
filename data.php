@@ -27,9 +27,33 @@ function distance($lat1, $lon1, $lat2, $lon2, $unit) {
   }
 }
 
-//echo distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>";
-//echo distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
-//echo distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
+function ago($time){
+  /*
+    Ago accepts any date or time and returns a string explaining how long ago that was.
+    For example, "6 days ago" or "8 seconds ago"
+  */
+  $Original = $time;
+  if(is_int($time)===false){
+    $time=strtotime($time);
+  }
+  if(($time==0)||(empty($time))){
+    return 'Never';
+  }
+  $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+  $lengths = array("60","60","24","7","4.35","12","10");
+  $now = time();
+  $difference     = $now - $time;
+  $tense         = "ago";
+  for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+    $difference /= $lengths[$j];
+  }
+  $difference = round($difference);
+  if($difference != 1) {
+    $periods[$j].= "s";
+  }
+  return "$difference $periods[$j] ago";
+}
+
 	
 function ShowM365s(){
 	if($handle = opendir('data')){
@@ -46,7 +70,9 @@ function ShowM365s(){
 	$M365=array();
 	foreach($directories as $name => $directory){
 		if(file_exists('data/'.$name.'/detail/model.m365')){
-			include('data/'.$name.'/detail/model.m365');
+			$File = 'data/'.$name.'/detail/model.m365';
+			include($File);
+			$M365[$name]['time']=filemtime($File);
 		}
 	}
 	$Sorted = array();
@@ -56,7 +82,7 @@ function ShowM365s(){
 	}
 	ksort($Sorted);
 	foreach($Sorted as $Distance => $Coordinates){
-		echo '<p><a href="https://www.google.com/maps/place/'.$Coordinates['latitude'].','.$Coordinates['longitude'].'" target="_blank">M365 Last Seen '.$Distance.' miles away.</a></p>';
+		echo '<p><a href="https://www.google.com/maps/place/'.$Coordinates['latitude'].','.$Coordinates['longitude'].'" target="_blank">M365 Last Seen '.$Distance.' miles away, '.ago($Coordinates['time']).'.</a></p>';
 	}
 
 }
