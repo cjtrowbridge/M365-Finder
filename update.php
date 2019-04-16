@@ -71,6 +71,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       mkdir('data/'.$Scooter['id'].'/detail');
     }
     $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
+    $DetailPathJSON = 'data/'.$Scooter['id'].'/detail/last.json';
     
     //We only want to fetch details if we know it is an m365 or if it might be an m365
     if(
@@ -80,6 +81,7 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       $Detail = $Bird->getScooterDetail($Scooter['id']);
       $Data = '<?php global $Data; if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
       file_put_contents($DetailPath,$Data);
+      file_put_contents($DetailPathJSON,json_encode($Detail,JSON_PRETTY_PRINT));
       if(!(file_exists('data/'.$Scooter['id'].'/detail/model.m365'))){
         $Model = $Detail['model'];
         $ModelPath = 'data/'.$Scooter['id'].'/detail/model.'.$Model;
