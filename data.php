@@ -18,17 +18,10 @@ function ShowM365s(){
 	}
 	foreach($directories as $name => $directory){
 		if(file_exists('data/'.$name.'/model.m365')){
-			include('data/'.$name.'/detail.php');
+			echo '<p>'.file_get_contents('data/'.$name.'/detail.php').'</p>';
 		}
 	}
-	
-	
-	echo '<ul>';
-	global $Data;
-	foreach($Data as $ID => $Detail){
-		var_dump($Detail);
-	}
-	echo '</ul>';
+
 }
 
 ShowM365s();
