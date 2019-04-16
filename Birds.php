@@ -107,7 +107,7 @@ class Birds{
   function getNearbyScooters(){
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.bird.co/bird/nearby?latitude=".$this->Latitude."&longitude=".$this->Longitude."radius=1000",
+      CURLOPT_URL => "https://api.bird.co/bird/nearby?latitude=".$this->Latitude."&longitude=".$this->Longitude."&radius=2000",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
