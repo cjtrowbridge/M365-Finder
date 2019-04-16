@@ -6,6 +6,9 @@
 <?php
 
 function ShowDirectoryTree($Root = '.',$CurrentPath=''){
+	$DirectoriesNotToExpandByDefault=array(
+		'.git'
+	);
 	$Root = rtrim($Root,"/");
 	$CurrentPath = trim($CurrentPath,"/");
 		
@@ -28,8 +31,17 @@ function ShowDirectoryTree($Root = '.',$CurrentPath=''){
 	asort($files);
 	foreach($directories as $name => $directory){
 		echo '<li><a href="'.$name.'"><img src="/icons/folder.gif" alt="[DIR]"> '.$name.'</a>';
-    $RecursivePath=$CurrentPath.DIRECTORY_SEPARATOR.$name;
-    ShowDirectoryTree($Root,$RecursivePath);
+		
+		$Skip = false;
+		foreach($DirectoriesNotToExpandByDefault as $Ignore){
+			if( strpos(strtolower($name),strtolower($Ignore) ) !== false){
+				$Skip = true;
+			}
+		}
+		if(!($Skip)){
+			$RecursivePath=$CurrentPath.DIRECTORY_SEPARATOR.$name;
+			ShowDirectoryTree($Root,$RecursivePath);
+		}
 		echo '</li>';
 	}
 	foreach($files as $name => $file){
