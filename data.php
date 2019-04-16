@@ -16,10 +16,15 @@ function ShowM365s(){
 		}
 		closedir($handle);
 	}
+	global $M365;
+	$M365=array();
 	foreach($directories as $name => $directory){
 		if(file_exists('data/'.$name.'/detail/model.m365')){
-			echo '<p><a href="data/'.$name.'/detail/model.m365" target="_blank">'.file_get_contents('data/'.$name.'/detail/model.m365').'</a></p>';
+			include('data/'.$name.'/detail/model.m365');
 		}
+	}
+	foreach($M365 as $ID => $Coordinates){
+		echo '<p><a href="https://www.google.com/maps/place/'.$Coordinates['latitude'].','.$Coordinates['longitude'].'" target="_blank">link</a></p>';
 	}
 
 }
