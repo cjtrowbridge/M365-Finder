@@ -5,51 +5,29 @@
 <body>
 <?php
 
-function ShowDirectoryTree($Root = '.',$CurrentPath=''){
-	$DirectoriesNotToExpandByDefault=array(
-		'.git'
-	);
-	$Root = rtrim($Root,"/");
-	$CurrentPath = trim($CurrentPath,"/");
-		
-	$directories=array();
-	$files=array();
-	echo '<ul class="tree">';
-	if($handle = opendir($Root.DIRECTORY_SEPARATOR.$CurrentPath)){
+function ShowM365s(){
+	if($handle = opendir('data')){
 		while(false !== ($entry = readdir($handle))){
 			if(is_dir($Root.DIRECTORY_SEPARATOR.$CurrentPath.DIRECTORY_SEPARATOR.$entry)){
 				if(($entry !== '.')&& ($entry!=='..')){
 					$directories[$entry]=$entry;
 				}
-			}else{
-				$files[$entry]=$entry;
 			}
 		}
 		closedir($handle);
 	}
-	asort($directories);
-	arsort($files);
 	foreach($directories as $name => $directory){
-		echo '<li><a href="'.$Root.DIRECTORY_SEPARATOR.$CurrentPath.'/'.$name.'"><img src="/icons/folder.gif" alt="[DIR]"> '.$name.'</a>';
-		
-		$Skip = false;
-		foreach($DirectoriesNotToExpandByDefault as $Ignore){
-			if( strpos(strtolower($name),strtolower($Ignore) ) !== false){
-				$Skip = true;
-			}
+		if(file_exists('data/'.$name.'/model.m365')){
+			include('data/'.$name.'/detail.php');
 		}
-		if(!($Skip)){
-			$RecursivePath=$CurrentPath.DIRECTORY_SEPARATOR.$name;
-			ShowDirectoryTree($Root,$RecursivePath);
-		}
-		echo '</li>';
 	}
-	foreach($files as $name => $file){
-		echo '<li><a href="'.$Root.DIRECTORY_SEPARATOR.$CurrentPath.DIRECTORY_SEPARATOR.$name.'" target="_blank"><img src="/icons/unknown.gif" alt="[DIR]"> '.$name.'</a></li>';
+	
+	
+	echo '<ul>';
+	foreach($Data as $ID => $Detail){
+		var_dump($Detail);
 	}
 	echo '</ul>';
 }
 
-ShowDirectoryTree('raw');
-ShowDirectoryTree('data');
-ShowDirectoryTree('location');
+ShowM365s();
