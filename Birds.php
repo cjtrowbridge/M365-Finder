@@ -18,6 +18,10 @@ class Birds{
     
     $this->Latitude = $Lat;
     $this->Longitude = $Lon;
+    
+    if(!(is_dir('raw'))){
+      mkdir('raw');
+    }
   }
   
   /*
@@ -92,6 +96,7 @@ class Birds{
     if ($err) {
       die("cURL Error while getting auth token #:" . $err);
     }
+    file_put_contents('raw/'.date("Y-m-d--H-i-s").'-auth.txt',$response);
     $response = json_decode($response,true);
     return $response;
   }
@@ -124,6 +129,7 @@ class Birds{
     if ($err) {
       echo "cURL Error #:" . $err;
     }
+    file_put_contents('raw/'.date("Y-m-d--H-i-s").'-list.txt',$response);
     $response = json_decode($response,true);
     return $response;
   }
@@ -157,6 +163,7 @@ class Birds{
     if ($err) {
       die("cURL Error while fetching device details #:" . $err);
     }
+    file_put_contents('raw/'.date("Y-m-d--H-i-s").'-details.txt',$response);
     $response = json_decode($response,true);
     return $response;
   }
