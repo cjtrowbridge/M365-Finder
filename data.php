@@ -72,7 +72,7 @@ function ShowM365s(){
 	}
 	$Sorted = array();
 	foreach($M365 as $ID => $Coordinates){
-		$Distance = distance($Coordinates['latitude'], $Coordinates['longitude'], $_GET['latitude'], $_GET['longitude'], "M")
+		$Distance = distance($Coordinates['latitude'], $Coordinates['longitude'], $_GET['latitude'], $_GET['longitude'], "M");
 		$Sorted[ $Distance ] = $Coordinates;
 	}
 	ksort($Sorted);
