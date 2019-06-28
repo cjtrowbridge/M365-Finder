@@ -73,8 +73,17 @@ function ShowM365s(){
 	}
 	$Sorted = array();
 	foreach($M365 as $ID => $Coordinates){
-		$Distance = distance($Coordinates['latitude'], $Coordinates['longitude'], $_GET['latitude'], $_GET['longitude'], "M");
-		$Sorted[ $Distance ] = $Coordinates;
+		if(
+			isset($Coordinates['latitude']) &&
+			isset($Coordinates['longitude'])
+		){
+			$Distance = distance($Coordinates['latitude'], $Coordinates['longitude'], $_GET['latitude'], $_GET['longitude'], "M");
+			$Sorted[ $Distance ] = $Coordinates;
+		}else{
+			echo "<!--\nSomething Wrong with this Bird;\n";
+			var_dump($Coordinates);
+			echo "-->\n";
+		}
 	}
 	ksort($Sorted);
 	foreach($Sorted as $Distance => $Coordinates){
