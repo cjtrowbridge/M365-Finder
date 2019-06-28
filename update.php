@@ -34,11 +34,11 @@ if(
       break;
     case 'Soma':
     default:
-      UpdateLocation('37.778248','-122.405501', 'Soma');
+      UpdateLocation('37.809873','-122.261877', 'Lake Merritt');
       break;
   }
 }else{
-  UpdateLocation('37.778248','-122.405501', 'Soma');
+  UpdateLocation('37.809873','-122.261877', 'Lake Merritt');
 }
 
 function UpdateLocation($Latitude, $Longitude, $LocationName=false){
