@@ -90,7 +90,8 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       }
     }
   }else{
-    echo "No New Birds Found.\n";
+    //Redundant
+    //echo "No New Birds Found.\n";
   }
   
   if(!(is_dir('location'))){
