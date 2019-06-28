@@ -110,12 +110,9 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   //Output some text about what was found
   $BirdsFound = count($Scooters['birds']);
   if($BirdsFound==0){
-    echo 'Something went wrong. No birds found.';
+    echo "Something went wrong. No birds found.\n";
   }else{
-    echo 'Updated '.$BirdsFound.' birds. ('.$NewBirds.' new.)';
+    echo "Updated ".$BirdsFound." birds. (".$NewBirds." new.)";
   }
-  //echo PHP_EOL.'<!--'.$Latitude.','.$Longitude.' (LocationName: '.$LocationName.')'.PHP_EOL;
-  //var_dump($Scooters);
-  //echo '-->';
   
 }
