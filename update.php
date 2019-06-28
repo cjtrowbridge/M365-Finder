@@ -110,9 +110,9 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
   //Output some text about what was found
   $BirdsFound = count($Scooters['birds']);
   if($BirdsFound==0){
-    echo "Something went wrong. No birds found.\n";
+    echo "Something went wrong. No birds found.\n\n";
   }else{
-    echo "Updated ".$BirdsFound." birds. (".$NewBirds." new.)";
+    echo "Updated ".$BirdsFound." birds. (".$NewBirds." new.)\n\n";
   }
   
 }
