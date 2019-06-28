@@ -52,41 +52,44 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
       die('Failed to create data directory. Check permissions.');
     }
   }
-  
-  foreach($Scooters['birds'] as $Scooter){
-    if(!(is_dir('data/'.$Scooter['id']))){
-      mkdir('data/'.$Scooter['id']);
-      $NewBirds++;
-    }
-    if(!(is_dir('data/'.$Scooter['id'].'/'.date('Y-m-d')))){
-      mkdir('data/'.$Scooter['id'].'/'.date('Y-m-d'));
-    }
-    //Create a version file containing the current data (this way we can look back over time)
-    $Path = 'data/'.$Scooter['id'].'/'.date('Y-m-d').'/'.date('H:i:s').'.php';
-    $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "'.date("Y-m-d").'" ][ "'.date("H:i:s").'" ] = '.PHP_EOL.var_export($Scooter,true).';';
-    file_put_contents($Path,$Data);
-    
-    //Update the detail file for this scooter to contain only the latest data (this way it's easy to find the lastest data quickly)
-    if(!(is_dir('data/'.$Scooter['id'].'/detail'))){
-      mkdir('data/'.$Scooter['id'].'/detail');
-    }
-    $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
-    $DetailPathJSON = 'data/'.$Scooter['id'].'/detail/last.json';
-    
-    //We only want to fetch details if we know it is an m365 or if it might be an m365
-    if(
-      (count(glob('data/'.$Scooter['id'].'/detail/model.*'))==0) ||
-      file_exists('data/'.$Scooter['id'].'/detail/model.m365')
-    ){
-      $Detail = $Bird->getScooterDetail($Scooter['id']);
-      $Data = '<?php global $Data; if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
-      file_put_contents($DetailPath,$Data);
-      file_put_contents($DetailPathJSON,json_encode($Detail,JSON_PRETTY_PRINT));
-      if(!(file_exists('data/'.$Scooter['id'].'/detail/model.m365'))){
-        $Model = $Detail['model'];
-        $ModelPath = 'data/'.$Scooter['id'].'/detail/model.'.$Model;
-        file_put_contents($ModelPath,'<?php global $M365; $M365["'.$Scooter['id'].'"]='.var_export($Detail['location'],true).';');
+  if(is_array($Scooters['birds'])){
+    foreach($Scooters['birds'] as $Scooter){
+      if(!(is_dir('data/'.$Scooter['id']))){
+        mkdir('data/'.$Scooter['id']);
+        $NewBirds++;
       }
+      if(!(is_dir('data/'.$Scooter['id'].'/'.date('Y-m-d')))){
+        mkdir('data/'.$Scooter['id'].'/'.date('Y-m-d'));
+      }
+      //Create a version file containing the current data (this way we can look back over time)
+      $Path = 'data/'.$Scooter['id'].'/'.date('Y-m-d').'/'.date('H:i:s').'.php';
+      $Data = '<?php if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "'.date("Y-m-d").'" ][ "'.date("H:i:s").'" ] = '.PHP_EOL.var_export($Scooter,true).';';
+      file_put_contents($Path,$Data);
+
+      //Update the detail file for this scooter to contain only the latest data (this way it's easy to find the lastest data quickly)
+      if(!(is_dir('data/'.$Scooter['id'].'/detail'))){
+        mkdir('data/'.$Scooter['id'].'/detail');
+      }
+      $DetailPath = 'data/'.$Scooter['id'].'/detail/last.php';
+      $DetailPathJSON = 'data/'.$Scooter['id'].'/detail/last.json';
+
+      //We only want to fetch details if we know it is an m365 or if it might be an m365
+      if(
+        (count(glob('data/'.$Scooter['id'].'/detail/model.*'))==0) ||
+        file_exists('data/'.$Scooter['id'].'/detail/model.m365')
+      ){
+        $Detail = $Bird->getScooterDetail($Scooter['id']);
+        $Data = '<?php global $Data; if(!(isset($Data))){$Data=array();} $Data[ "'.$Scooter["id"].'" ][ "Detail" ] = '.PHP_EOL.var_export($Detail,true).';'.PHP_EOL;
+        file_put_contents($DetailPath,$Data);
+        file_put_contents($DetailPathJSON,json_encode($Detail,JSON_PRETTY_PRINT));
+        if(!(file_exists('data/'.$Scooter['id'].'/detail/model.m365'))){
+          $Model = $Detail['model'];
+          $ModelPath = 'data/'.$Scooter['id'].'/detail/model.'.$Model;
+          file_put_contents($ModelPath,'<?php global $M365; $M365["'.$Scooter['id'].'"]='.var_export($Detail['location'],true).';');
+        }
+      }
+    }else{
+      echo "No New Birds Found.\n";
     }
     
   }
