@@ -1,5 +1,13 @@
 <?php
 
+if(!(
+  isset($_GET['latitude'])||
+  isset($_GET['longitude'])
+)){
+  $_GET['latitude'] = '37.809873';
+  $_GET['longitude'] = '-122.261877';
+}
+   
 class Birds{
 
   private $Email     = false;
