@@ -88,10 +88,9 @@ function UpdateLocation($Latitude, $Longitude, $LocationName=false){
           file_put_contents($ModelPath,'<?php global $M365; $M365["'.$Scooter['id'].'"]='.var_export($Detail['location'],true).';');
         }
       }
-    }else{
-      echo "No New Birds Found.\n";
     }
-    
+  }else{
+    echo "No New Birds Found.\n";
   }
   
   if(!(is_dir('location'))){
