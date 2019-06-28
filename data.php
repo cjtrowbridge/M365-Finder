@@ -51,6 +51,7 @@ function ago($time){
 
 	
 function ShowM365s(){
+	include_once('Birds.php');
 	if($handle = opendir('data')){
 		while(false !== ($entry = readdir($handle))){
 			if(is_dir('data/'.$entry)){
@@ -73,17 +74,8 @@ function ShowM365s(){
 	}
 	$Sorted = array();
 	foreach($M365 as $ID => $Coordinates){
-		if(
-			isset($Coordinates['latitude']) &&
-			isset($Coordinates['longitude'])
-		){
-			$Distance = distance($Coordinates['latitude'], $Coordinates['longitude'], $_GET['latitude'], $_GET['longitude'], "M");
-			$Sorted[ $Distance ] = $Coordinates;
-		}else{
-			echo "<!--\nSomething Wrong with this Bird;\n";
-			var_dump($Coordinates);
-			echo "-->\n";
-		}
+		$Distance = distance($Coordinates['latitude'], $Coordinates['longitude'], $_GET['latitude'], $_GET['longitude'], "M");
+		$Sorted[ $Distance ] = $Coordinates;
 	}
 	ksort($Sorted);
 	foreach($Sorted as $Distance => $Coordinates){
