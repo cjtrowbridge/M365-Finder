@@ -51,6 +51,7 @@ function ago($time){
 
 	
 function ShowM365s(){
+	$directories=array();
 	include_once('Birds.php');
 	if($handle = opendir('data')){
 		while(false !== ($entry = readdir($handle))){
